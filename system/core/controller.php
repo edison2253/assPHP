@@ -40,6 +40,17 @@ class controller {
 		}
 	}
 
+	/**
+	 * 重定向
+	 * @param  string $redirectPath 重定向地址
+	 */
+	public function redirect($redirectPath) {
+		strpos($redirectPath, 'http://') ? 
+		$url = $redirectPath : 
+		$url = APP_HOST . $redirectPath;
+		header("Location:{$url}");
+	}
+
 	//加载公共函数
 	public function helper($funcName) {
 		if ( !strpos($funcName, self::FUNC_SUFFIX) ) {
