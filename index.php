@@ -13,8 +13,20 @@ switch (version_compare(PHP_VERSION, '7.2')) {
 //项目名称
 define('ASS_NAME', 'AssPHP');
 
-//控制器名称
+//项目域名
+define('APP_HOST', 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . '/');
+
+//控制器目录名称
 define('APP_CONTROLLER_NAME', 'controller');
+
+//视图目录名称
+define('APP_VIEWS_NAME', 'views');
+
+//公共函数目录名称
+define('HELPER_NAME', 'helpers');
+
+//配置文件目录名称
+define('CONF_NAME', 'conf');
 
 //项目文件目录名称
 define('APP_NAME', 'application');

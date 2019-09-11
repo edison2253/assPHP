@@ -1,15 +1,15 @@
 <?php
 namespace system\core;
 use system\core\router;
+use system\core\config;
 /**
- * 这里主要是让路由跑起来
- *
+ * 这里主要处理框架运行前的一些事务
  */
 class init {
-
+	//路由对象
 	private $router;
 
-
+	//对应路径
 	private $_nameArr;
 
 	public function __construct() {
@@ -19,11 +19,21 @@ class init {
 
 	//运行
 	public function run() {
+		//自动加载公共函数
+		$this->conf_func();
+
+		//加载控制器
 		$method = $this->_getMethod();
 		$controller = $this->_getController();
-
 		$c = new $controller();
 		$c->$method();
+	}
+
+	//加载公共函数配置项
+	public function conf_func() {
+		require_once ASS_PATH . APP_NAME . '/' . CONF_NAME . '/config.php';
+		$config = new \system\core\config();
+		$config->auto_func_run($autoload_func);
 	}
 
 	//获取控制器名称
@@ -42,7 +52,7 @@ class init {
 	private function _getMethod() {
 		$_nameArr = end($this->_nameArr);
 
-		if ( empty( $_nameArr) ) {
+		if ( empty( $_nameArr ) ) {
 			$_nameArr = DEFAULT_METHOD;
 		}
 

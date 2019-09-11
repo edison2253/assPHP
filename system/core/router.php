@@ -1,6 +1,8 @@
 <?php
 namespace system\core;
-
+/**
+ * 这里处理框架路由
+ */
 class router {
 	private $_PATHINFO;
 
