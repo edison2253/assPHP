@@ -1,5 +1,7 @@
 <?php
 namespace system\core;
+use \system\database\model;
+use \system\core\config;
 
 class controller {
 
@@ -16,8 +18,12 @@ class controller {
 	 * 实例化模型层
 	 * @return string 模型名称
 	 */
-	public function model($model_name) {
-
+	public function model($model_name = false) {
+		if ( !$model_name ) {
+			$config = new \system\core\config();
+			$model = new \system\database\model($config->autoload['database']['localhost'], $config->autoload['database']['username'], $config->autoload['database']['password'], $config->autoload['database']['database']);
+			return $model;
+		}
 	}
 
 	public function post($key = false) {
