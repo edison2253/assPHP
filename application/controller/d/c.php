@@ -1,10 +1,11 @@
 <?php
 namespace controller\d;
 use \system\core\controller;
+use \system\database\DB;
 
 class c extends controller{
 
 	public function d() {
-		echo 'testd';
+		$db = new DB();
 	}
 }

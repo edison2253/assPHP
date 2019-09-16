@@ -31,9 +31,8 @@ class init {
 
 	//加载公共函数配置项
 	public function conf_func() {
-		require_once ASS_PATH . APP_NAME . '/' . CONF_NAME . '/config.php';
 		$config = new \system\core\config();
-		$config->auto_func_run($autoload_func);
+		$config->auto_func_run();
 	}
 
 	//获取控制器名称
