@@ -5,6 +5,7 @@ class model {
 
 	//数据库连接
 	protected $db;
+	//预处理对象
 	protected $smt;
 
 	//查询条件
@@ -52,6 +53,7 @@ class model {
 		}
 
 		$this->smt->execute();
+		//如果存在错误
 		$error = $this->smt->errorInfo();
 		if ($error[1]) {
 			die($error[2]);
@@ -80,6 +82,15 @@ class model {
 
 		return $this;
 	}
+
+	//添加
+	public function insert(){}
+
+	//删除
+	public function delete(){}
+
+	//更新
+	public function update(){}
 
 	//查询列
 	public function select($field) {
