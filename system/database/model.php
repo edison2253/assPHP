@@ -84,7 +84,7 @@ class model {
 	}
 
 	//添加
-	public function insert(){}
+	public function insert($table, $insert){}
 
 	//删除
 	public function delete(){}
