@@ -26,7 +26,8 @@ class controller {
 		$this->db = $this->config->auto_database();
 	}
 
-	public function db($database = false) {
+	//连接数据库
+	public function database($database = false) {
 		$this->db = $this->config->auto_database($database);
 	}
 

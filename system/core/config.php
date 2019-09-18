@@ -25,19 +25,17 @@ class config{
 
 	//获取orm对象
 	public function auto_database($database = false) {
-		
-		//手动连接数据库
-		if ( is_array($database) ) {
-			return new \system\database\model($database['localhost'], $database['username'], $database['password'], $database['database']);
+		//如果没有手动连接参数
+		if ( !is_array($database) ) {
+			//如果已开启自动连接
+			if ( $this->autoload['database']['is_autoload'] === true ) {
+				$database = $this->autoload['database'];
+			} else {
+				return false;
+			}
 		}
 
-		//自动连接数据库
-		if ( !is_array($database) && $this->autoload['database']['is_autoload'] === true ) {
-
-			return new \system\database\model($this->autoload['database']['localhost'], $this->autoload['database']['username'], $this->autoload['database']['password'], $this->autoload['database']['database']);
-		}
-
-		return false;
+		return $this->_getInstance($database);
 	}
 
 	/**
@@ -50,5 +48,10 @@ class config{
 				require_once self::HELPER_PATH . $this->_autoload_func_conf[$v];
 			}
 		}
+	}
+
+	//连接数据库
+	public function _getInstance(array $database) {
+		return new \system\database\model($database['localhost'], $database['username'], $database['password'], $database['database']);
 	}
 }

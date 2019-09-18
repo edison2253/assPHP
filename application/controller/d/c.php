@@ -10,11 +10,12 @@ class c extends controller{
 	}
 
 	public function test() {
-		$data = [];
-		$data['name'] = 'test1';
-		$data['content'] = 'content1';
-		$data['datime'] = time();
-		$this->db->insert('test', $data);
+
+		$this->db->start();
+		$result = $this->db->select('*')->from('test')->result();
+		$result = $this->db->insert('test', array('name' => 'ttt1', 'content' => '222', 'datime' => '333'));
+		$this->db->insert('test', array('name' => 'ttt1', 'content' => '222', 'datime' => '333'));
 		
+		$this->db->commit();
 	}
 }
