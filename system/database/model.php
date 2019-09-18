@@ -84,7 +84,9 @@ class model {
 	}
 
 	//添加
-	public function insert($table, $insert){}
+	public function insert(string $table, array $insert){
+		echo $table;
+	}
 
 	//删除
 	public function delete(){}

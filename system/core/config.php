@@ -1,5 +1,7 @@
 <?php
 namespace system\core;
+use \system\database\model;
+
 /**
  * 可加载的配置文件
  */
@@ -19,6 +21,23 @@ class config{
 	public function __construct() {
 		require ASS_PATH . APP_NAME . '/' . CONF_NAME . '/config.php';
 		$this->autoload = $autoload;
+	}
+
+	//获取orm对象
+	public function auto_database($database = false) {
+		
+		//手动连接数据库
+		if ( is_array($database) ) {
+			return new \system\database\model($database['localhost'], $database['username'], $database['password'], $database['database']);
+		}
+
+		//自动连接数据库
+		if ( !is_array($database) && $this->autoload['database']['is_autoload'] === true ) {
+
+			return new \system\database\model($this->autoload['database']['localhost'], $this->autoload['database']['username'], $this->autoload['database']['password'], $this->autoload['database']['database']);
+		}
+
+		return false;
 	}
 
 	/**

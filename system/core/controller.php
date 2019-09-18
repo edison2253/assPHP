@@ -1,6 +1,5 @@
 <?php
 namespace system\core;
-use \system\database\model;
 use \system\core\config;
 
 class controller {
@@ -14,15 +13,30 @@ class controller {
 	//获取表单信息
 	private $post;
 
+	//配置类
+	public $config;
+
+	//orm操作对象
+	public $db;
+
+	public function __construct() {
+		$this->config = new \system\core\config();
+
+		//获取db操作对象
+		$this->db = $this->config->auto_database();
+	}
+
+	public function db($database = false) {
+		$this->db = $this->config->auto_database($database);
+	}
+
 	/**
 	 * 实例化模型层
-	 * @return string 模型名称
+	 * @return object 模型名称
 	 */
-	public function model($model_name = false) {
-		if ( !$model_name ) {
-			$config = new \system\core\config();
-			$model = new \system\database\model($config->autoload['database']['localhost'], $config->autoload['database']['username'], $config->autoload['database']['password'], $config->autoload['database']['database']);
-			return $model;
+	public function model($modelName = false) {
+		if ( !$modelName ) {
+			return $this->db;
 		}
 	}
 
