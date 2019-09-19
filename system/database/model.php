@@ -144,7 +144,7 @@ class model {
 	public function delete($table){}
 
 	//更新
-	public function update(){}
+	public function update($update){}
 
 	//查询列
 	public function select($field) {
