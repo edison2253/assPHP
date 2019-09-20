@@ -19,6 +19,9 @@ class model {
 	//参数绑定传值
 	private $_isbind = false;
 
+	//表名
+	private $table;
+
 	public function __construct($localhost, $username, $password, $database) {
 		try {
 			$this->db = new \PDO("mysql:host=localhost;dbname=$database", $username, $password);
@@ -34,24 +37,7 @@ class model {
 			$this->sql .= ' WHERE ';
 		}
 
-		if ( is_array($this->where) ) {
-			$i = 0;
-			foreach ($this->where as $k => $v) {
-				$i ++;
-				if ($i == 1) {
-					//参数绑定时，参数值不能是字符串
-					$this->_isbind ? 
-					$this->sql .= $k . ' = ' . $v: 
-					$this->sql .= $k . ' = ' . "'" . $v;
-				} else {
-					$this->_isbind ?
-					$this->sql .= ' AND ' . $k . ' = ' . $v: 
-					$this->sql .= ' AND ' . $k . ' = ' . "'" . $v;
-				}
-			}
-		}
-
-		$this->sql .= ';';
+		$this->sql .= $this->_where();
 		$this->smt = $this->db->prepare($this->sql);
 
 		if ( $this->_isbind ) {
@@ -90,9 +76,9 @@ class model {
 	}
 
 	//添加
-	public function insert(string $table, array $insert){
+	public function insert(array $insert){
 		$sql = 'INSERT INTO ' . 
-				$table . 
+				$this->table . 
 				'(' . implode(',', array_keys($insert)) . 
 				') VALUES(';
 
@@ -140,8 +126,30 @@ class model {
 		$this->db->rollback();
 	}
 
+	//查询表名
+	public function table(string $table) {
+		$this->table = $table;
+		return $this;
+	}
+
 	//删除
-	public function delete($table){}
+	public function delete(){
+		$sql = "DELETE FROM {$this->table} WHERE ";
+		$sql .= $this->_where();
+
+		$this->smt = $this->db->prepare($sql);
+		if ( $this->_isbind ) {
+			foreach ($this->_isbind as $k => $v) {
+				$this->smt->bindValue(":" . $k, $v);
+			}
+		}
+
+		$error = $this->smt->errorInfo();
+		if ($error[1]) {
+			die($error[2]);
+		}
+		return $this->smt->execute();
+	}
 
 	//更新
 	public function update($update){}
@@ -156,5 +164,31 @@ class model {
 	public function from($table) {
 		$this->sql .= ' FROM ' . $table;
 		return $this;
+	}
+
+	//拼接WHERE语句
+	private function _where() {
+		$sql = '';
+
+		if ( is_array($this->where) ) {
+			$i = 0;
+			foreach ($this->where as $k => $v) {
+				$i ++;
+				if ($i == 1) {
+					//参数绑定时，参数值不能是字符串
+					$this->_isbind ? 
+					$sql .= $k . ' = ' . $v: 
+					$sql .= $k . ' = ' . "'" . $v . "'";
+				} else {
+					$this->_isbind ?
+					$sql .= ' AND ' . $k . ' = ' . $v: 
+					$sql .= ' AND ' . $k . ' = ' . "'" . $v . "'";
+				}
+			}
+		} else {
+			return $this->where;
+		}
+
+		return $sql;
 	}
 }
