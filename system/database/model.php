@@ -152,7 +152,22 @@ class model {
 	}
 
 	//更新
-	public function update($update){}
+	public function update($update){
+		$sql = "UPDATE {$this->table} SET " . $this->_where($update) . 
+				' WHERE ' . $this->_where();
+		$this->smt = $this->db->prepare($sql);
+		if ( $this->_isbind ) {
+			foreach ($this->_isbind as $k => $v) {
+				$this->smt->bindValue(":" . $k, $v);
+			}
+		}
+
+		$error = $this->smt->errorInfo();
+		if ($error[1]) {
+			die($error[2]);
+		}
+		return $this->smt->execute();
+	}
 
 	//查询列
 	public function select($field) {
@@ -167,12 +182,16 @@ class model {
 	}
 
 	//拼接WHERE语句
-	private function _where() {
+	private function _where($where = false) {
+		if ($where == false) {
+			$where = $this->where;
+		} 
+
 		$sql = '';
 
-		if ( is_array($this->where) ) {
+		if ( is_array($where) ) {
 			$i = 0;
-			foreach ($this->where as $k => $v) {
+			foreach ($where as $k => $v) {
 				$i ++;
 				if ($i == 1) {
 					//参数绑定时，参数值不能是字符串
@@ -186,7 +205,7 @@ class model {
 				}
 			}
 		} else {
-			return $this->where;
+			return $where;
 		}
 
 		return $sql;
