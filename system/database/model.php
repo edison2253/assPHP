@@ -169,6 +169,22 @@ class model {
 		return $this->smt->execute();
 	}
 
+	//查询
+	public function query($sql) {
+		$this->smt = $this->db->prepare($sql);
+		if ( $this->_isbind ) {
+			foreach ($this->_isbind as $k => $v) {
+				$this->smt->bindValue(":" . $k, $v);
+			}
+		}
+
+		$error = $this->smt->errorInfo();
+		if ($error[1]) {
+			die($error[2]);
+		}
+		return $this->smt->execute();
+	}
+
 	//查询列
 	public function select($field) {
 		$this->sql .= "SELECT " . $field;
