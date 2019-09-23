@@ -171,18 +171,9 @@ class model {
 
 	//查询
 	public function query($sql) {
-		$this->smt = $this->db->prepare($sql);
-		if ( $this->_isbind ) {
-			foreach ($this->_isbind as $k => $v) {
-				$this->smt->bindValue(":" . $k, $v);
-			}
-		}
+		$this->sql = $sql;
 
-		$error = $this->smt->errorInfo();
-		if ($error[1]) {
-			die($error[2]);
-		}
-		return $this->smt->execute();
+		return $this;;
 	}
 
 	//查询列

@@ -7,8 +7,8 @@ class c extends controller{
 	public function d() {
 		// $result = $this->model()->select('*')->from('test')->where(array('id' => ':id', "name" => ":name"))->bind(array('id' => 1, 'name' => '施文杰'))->result();
 		// var_dump($result);
-		$result = $this->db->table('test')->where(array('id' => 3, 'content' => 222))->update(array('name' => 'test3'));
-		var_dump($result);
+		// $result = $this->db->table('test')->where(array('id' => 3, 'content' => 222))->update(array('name' => 'test3'));
+		// var_dump($result);
 	}
 
 	public function test() {
