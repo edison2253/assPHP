@@ -9,6 +9,9 @@ class c extends controller{
 		// var_dump($result);
 		// $result = $this->db->table('test')->where(array('id' => 3, 'content' => 222))->update(array('name' => 'test3'));
 		// var_dump($result);
+		
+		$result = $this->db->select('*')->from('test as t')->join('left', 'user as u')->on('t.id = u.id')->result();
+		var_dump($result);
 	}
 
 	public function test() {

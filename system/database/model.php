@@ -13,6 +13,12 @@ class model {
 	//sql语句
 	private $sql;
 
+	//连接
+	private $dir = false;
+	//连接表
+	private $joinTable = false;
+	private $on = false;
+
 	//是否开启了事务
 	private $_isTransaction = false;
 
@@ -33,6 +39,13 @@ class model {
 
 	//输出结果
 	public function result() {
+		if ($this->dir != false &&
+			$this->joinTable != false &&
+			$this->on != false) {
+			$this->sql .= ' ' . $this->dir . ' JOIN ' . $this->joinTable;
+			$this->sql .= ' ON ' . $this->on;
+		}
+
 		if ( $this->where != false ) {
 			$this->sql .= ' WHERE ';
 		}
@@ -106,6 +119,23 @@ class model {
 		}
 
 		return $this->smt->execute();
+	}
+
+	/**
+	 * 连接
+	 * @param  string $dir left right inner
+	 * @param  string $table 
+	 * @return [type]      [description]
+	 */
+	public function join($dir, $table) {
+		$this->dir = $dir;
+		$this->joinTable = $table;
+		return $this;
+	}
+
+	public function on($on) {
+		$this->on = $on;
+		return $this;
 	}
 
 	//开启事务
