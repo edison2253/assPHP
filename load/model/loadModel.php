@@ -2,6 +2,8 @@
 //自动构建model
 if ( @$argv[0] != 'loadModel.php' || @$argv[1] != 'run') {
 	die('The wrong command line');
+} else {
+	echo 'loadModel start' . PHP_EOL;
 }
 
 //项目名称
