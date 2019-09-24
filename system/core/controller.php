@@ -17,7 +17,7 @@ class controller {
 	public $config;
 
 	//orm操作对象
-	public $db;
+	public $db = false;
 
 	public function __construct() {
 		$this->config = new \system\core\config();

@@ -1,6 +1,7 @@
 <?php
 namespace controller\d;
 use \system\core\controller;
+use \model\UserModel;
 
 class c extends controller{
 
@@ -10,8 +11,12 @@ class c extends controller{
 		// $result = $this->db->table('test')->where(array('id' => 3, 'content' => 222))->update(array('name' => 'test3'));
 		// var_dump($result);
 		
-		$result = $this->db->select('*')->from('test as t')->join('left', 'user as u')->on('t.id = u.id')->result();
+		$result = $this->db->select('*')->from('user')->groupby('username')->result();
 		var_dump($result);
+		
+		// $user = new \model\UserModel();
+		// $result = $user->getUserList();
+		// var_dump($result);
 	}
 
 	public function test() {

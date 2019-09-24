@@ -25,6 +25,15 @@ class model {
 	//参数绑定传值
 	private $_isbind = false;
 
+	//查询条数
+	private $limit = false;
+
+	//排列方式
+	private $orderby = false;
+
+	//分组
+	private $groupby = false;
+
 	//表名
 	private $table;
 
@@ -48,6 +57,18 @@ class model {
 
 		if ( $this->where != false ) {
 			$this->sql .= ' WHERE ';
+		}
+
+		if ( $this->groupby ) {
+			$this->sql .= ' group by ' . $this->groupby;
+		}
+
+		if ( $this->orderby ) {
+			$this->sql .= ' order by ' . $this->orderby;
+		}
+
+		if ( $this->limit ) {
+			$this->sql .= ' limit ' . $this->limit;
 		}
 
 		$this->sql .= $this->_where();
@@ -85,6 +106,24 @@ class model {
 	//where拼接
 	public function where($where) {
 		$this->where = $where;
+		return $this;
+	}
+
+	//limit 取条数
+	public function limit($limit) {
+		$this->limit = $limit;
+		return $this;
+	}
+
+	//orderby 排列
+	public function orderby($orderby) {
+		$this->orderby = $orderby;
+		return $this;
+	}
+
+	//groupby 分组
+	public function groupby($groupby) {
+		$this->groupby = $groupby;
 		return $this;
 	}
 
@@ -246,5 +285,9 @@ class model {
 		}
 
 		return $sql;
+	}
+
+	public function __destruct() {
+		$this->db = null;
 	}
 }

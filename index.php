@@ -22,6 +22,9 @@ define('APP_CONTROLLER_NAME', 'controller');
 //视图目录名称
 define('APP_VIEWS_NAME', 'views');
 
+//模型层名称
+define('MODEL_NAME', 'model');
+
 //公共函数目录名称
 define('HELPER_NAME', 'helpers');
 
