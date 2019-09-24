@@ -39,7 +39,7 @@ class model {
 
 	public function __construct($localhost, $username, $password, $database) {
 		try {
-			$this->db = new \PDO("mysql:host=localhost;dbname=$database", $username, $password);
+			$this->db = new \PDO("mysql:host=$localhost;dbname=$database", $username, $password);
 		}
 		catch (PDOException $e) {
 			die($e->getMessage());
