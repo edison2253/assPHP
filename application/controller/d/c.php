@@ -11,12 +11,14 @@ class c extends controller{
 		// $result = $this->db->table('test')->where(array('id' => 3, 'content' => 222))->update(array('name' => 'test3'));
 		// var_dump($result);
 		
-		$result = $this->db->select('*')->from('user')->groupby('username')->result();
-		var_dump($result);
+		// $result = $this->db->select('*')->from('user')->groupby('username')->result();
+		// var_dump($result);
 		
 		// $user = new \model\UserModel();
 		// $result = $user->getUserList();
 		// var_dump($result);
+		
+		echo getTimeDiff(1569373880);
 	}
 
 	public function test() {

@@ -15,7 +15,7 @@ class config{
 
 	//支持自动加载的公共函数
 	private $_autoload_func_conf = [
-		'url' => 'url.function.php',
+		'url' => 'url.function.php'
 	];
 
 	public function __construct() {
@@ -46,6 +46,8 @@ class config{
 		foreach ( $this->autoload['function'] as $v ) {
 			if ( isset($this->_autoload_func_conf[$v]) ) {
 				require_once self::HELPER_PATH . $this->_autoload_func_conf[$v];
+			} else {
+				require_once ASS_PATH . APP_NAME . '/' . HELPER_NAME . '/' . $v . '.function.php';
 			}
 		}
 	}
