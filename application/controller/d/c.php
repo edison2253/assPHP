@@ -17,8 +17,13 @@ class c extends controller{
 		// $user = new \model\UserModel();
 		// $result = $user->getUserList();
 		// var_dump($result);
+		// 
+		// $this->helper('common');
 		
-		echo getTimeDiff(1569373880);
+		// echo getTimeDiff(1569373880);
+		// 
+		
+		$this->redirect('http://www.baidu.com');
 	}
 
 	public function test() {

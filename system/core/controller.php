@@ -66,7 +66,7 @@ class controller {
 	 * @param  string $redirectPath 重定向地址
 	 */
 	public function redirect($redirectPath) {
-		strpos($redirectPath, 'http://') ? 
+		strpos($redirectPath, 'http://') !== false ? 
 		$url = $redirectPath : 
 		$url = APP_HOST . $redirectPath;
 		header("Location:{$url}");

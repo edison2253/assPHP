@@ -12,6 +12,9 @@ class router {
 
 	//获取路径定位
 	public function getNameArr() {
+		if ( substr($this->_PATHINFO, -1) != '/' ) {
+			$this->_PATHINFO .= '/';
+		}
 		return explode('/', $this->_PATHINFO);
 	}
 }

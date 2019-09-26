@@ -38,8 +38,8 @@ class init {
 	//获取控制器名称
 	private function _getController() {
 		array_pop($this->_nameArr);
-		$_nameArr =  implode( '\\', $this->_nameArr );
 
+		$_nameArr =  implode( '\\', $this->_nameArr );
 		if ( empty( $_nameArr ) ) {
 			$_nameArr = '\\' . DEFAULT_CONTROLLER;
 		}
@@ -49,6 +49,8 @@ class init {
 
 	//获取方法名称
 	private function _getMethod() {
+		array_pop($this->_nameArr);
+
 		$_nameArr = end($this->_nameArr);
 
 		if ( empty( $_nameArr ) ) {
