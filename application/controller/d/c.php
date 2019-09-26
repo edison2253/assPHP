@@ -23,7 +23,7 @@ class c extends controller{
 		// echo getTimeDiff(1569373880);
 		// 
 		$this->helper('number');
-		echo byte_format('10534');
+		echo byte_format('10444012344214115616515615616510241');
 	}
 
 	public function test() {
@@ -32,7 +32,6 @@ class c extends controller{
 		$result = $this->db->select('*')->from('test')->result();
 		$result = $this->db->insert('test', array('name' => 'ttt1', 'content' => '222', 'datime' => '333'));
 		$this->db->insert('test', array('name' => 'ttt1', 'content' => '222', 'datime' => '333'));
-		
 		$this->db->commit();
 	}
 }

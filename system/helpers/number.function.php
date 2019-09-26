@@ -4,16 +4,15 @@ if ( !function_exists('byte_format') ) {
 	 * 根据数值大小以字节形式格式化并添加合适的缩写单位
 	 * @return [type] [description]
 	 */
-	function byte_format(int $number) {
+	function byte_format($number) {
 		for ($i = 0; $i < 5; $i ++) {
-			if ( round($number / 1024, 2) >= 1 ) {
+			if ( round($number / 1024, 2) >= 1 && $i !== 4) {
 				$number = round($number / 1024, 2);
 			} else {
 				switch ($i) {
 					case 0:
 							return $number . ' Bytes';
 						break;
-
 					case 1:
 							return $number . ' KB';
 						break;
@@ -26,7 +25,6 @@ if ( !function_exists('byte_format') ) {
 					case 4:
 							return $number . ' TB';
 						break;
-					
 					default:
 						# code...
 						break;
