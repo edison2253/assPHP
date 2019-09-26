@@ -22,8 +22,8 @@ class c extends controller{
 		
 		// echo getTimeDiff(1569373880);
 		// 
-		
-		$this->redirect('http://www.baidu.com');
+		$this->helper('number');
+		echo byte_format('10534');
 	}
 
 	public function test() {
