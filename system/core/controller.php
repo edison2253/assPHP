@@ -19,11 +19,17 @@ class controller {
 	//orm操作对象
 	public $db = false;
 
+	//session对象
+	public $session = false;
+
 	public function __construct() {
 		$this->config = new \system\core\config();
 
 		//获取db操作对象
 		$this->db = $this->config->auto_database();
+
+		//获取session对象
+		$this->session = $this->config->auto_session();
 	}
 
 	//连接数据库

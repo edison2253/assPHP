@@ -1,6 +1,7 @@
 <?php
 namespace system\core;
 use \system\database\model;
+use \system\core\session;
 
 /**
  * 可加载的配置文件
@@ -21,6 +22,18 @@ class config{
 	public function __construct() {
 		require ASS_PATH . APP_NAME . '/' . CONF_NAME . '/config.php';
 		$this->autoload = $autoload;
+	}
+
+	//获取session对象
+	public function auto_session() {
+		$session = new \system\core\session();
+		//如果开启了自动加载
+		if ( $this->autoload['session']['is_autoload'] == true) {
+			
+			return $session->start();
+		} else {
+			return $session;
+		}
 	}
 
 	//获取orm对象

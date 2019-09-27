@@ -11,3 +11,7 @@ $autoload['database'] = [
 	'password' => 'root', //密码
 	'database' => 'test', //数据库
 ];
+
+$autoload['session'] = [
+	'is_autoload' => true,
+];

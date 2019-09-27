@@ -21,9 +21,8 @@ class c extends controller{
 		// $this->helper('common');
 		
 		// echo getTimeDiff(1569373880);
-		// 
-		$this->helper('number');
-		echo byte_format('10444012344214115616515615616510241');
+		$this->session->username = '123';
+		var_dump($_SESSION);
 	}
 
 	public function test() {
