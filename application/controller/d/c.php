@@ -21,8 +21,9 @@ class c extends controller{
 		// $this->helper('common');
 		
 		// echo getTimeDiff(1569373880);
-		$this->session->username = '123';
-		var_dump($_SESSION);
+		// echo microtime();
+		// die;
+		echo memory_get_usage();
 	}
 
 	public function test() {
