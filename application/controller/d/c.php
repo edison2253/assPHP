@@ -23,7 +23,7 @@ class c extends controller{
 		// echo getTimeDiff(1569373880);
 		// echo microtime();
 		// die;
-		echo memory_get_usage();
+		// echo memory_get_usage();
 	}
 
 	public function test() {

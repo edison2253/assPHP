@@ -34,3 +34,27 @@ if ( !function_exists('byte_format') ) {
 		return $number;
 	}
 }
+
+if ( !function_exists('red_paper') ) {
+	/**
+	 * 红包功能(将固定金额随即拆成N份)
+	 * @param  int $money 总额
+	 * @param  int $num   份数
+	 * @return array 最终随即分配的数组
+	 */
+	function red_paper($money, $num) {
+		$money_arr = [];
+		for ($i = 0; $i < $num; $i ++) {
+			if ($i == $num) {
+				array_push($money_arr, $money);
+				continue;
+			}
+
+			$price = rand(1, $money / ($num - $i) * 2);
+			$money -= $price;
+			array_push($money_arr, $price);
+		}
+
+		return $money_arr;
+	}
+}
