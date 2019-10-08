@@ -1,8 +1,11 @@
 <?php
 
+//引入composer的自动加载类
+require_once ASS_PATH . 'vendor/autoload.php';
+
 //自动载入
 spl_autoload_register(function($class) {
-
+	
 	explode('\\', $class)[0] == SYSTEM_NAME ? 
 	$vendor = ASS_PATH . str_replace('\\', '/', $class . '.php') : 
 	$vendor = ASS_PATH . APP_NAME . '/' . str_replace('\\', '/', $class . '.php');

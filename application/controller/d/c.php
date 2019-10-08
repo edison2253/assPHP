@@ -17,13 +17,32 @@ class c extends controller{
 		// $user = new \model\UserModel();
 		// $result = $user->getUserList();
 		// var_dump($result);
-		// 
-		// $this->helper('common');
 		
-		// echo getTimeDiff(1569373880);
-		// echo microtime();
-		// die;
-		// echo memory_get_usage();
+		// //选择
+		// $arr = [56,456,74,345,74,234,65, 1, 123412];
+		// for ($i = 0; $i < count($arr); $i ++) {
+		// 	for ($y = $i + 1; $y < count($arr); $y ++) {
+		// 		if ($arr[$i] < $arr[$y]) {
+		// 			$n = $arr[$i];
+		// 			$arr[$i] = $arr[$y];
+		// 			$arr[$y] = $n;
+		// 		}
+		// 	}
+		// }
+		
+		// //冒泡
+		// $arr = [123,54,543,23,54,2143];
+		// for ($i = 0; $i < count($arr) - 1; $i ++) {
+		// 	for ($y = 0; $y < count($arr) - 1 - $i; $y ++) {
+		// 		if ($arr[$y] < $arr[$y + 1]) {
+		// 			$n = $arr[$y];
+		// 			$arr[$y] = $arr[$y + 1];
+		// 			$arr[$y + 1] = $n;
+		// 		}
+		// 	}
+		// }
+
+		// var_dump($arr);
 	}
 
 	public function test() {
