@@ -8,7 +8,7 @@ class index extends controller{
 		$this->show('test.html', ['username' => '陈']);
 		$this->show('test2.html');
 	}
-
+	
 	public function test() {
 		var_dump($this->post('password'));
 	}

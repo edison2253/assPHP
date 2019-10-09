@@ -98,6 +98,11 @@ class controller {
 		}
 	}
 
+	//加密函数(salt)
+	public function salt($val) {
+		return sha1( md5( $val ) . md5( $this->config->config['salt_key'] ) );
+	}
+
 	//加载视图
 	public function show($pageName, $var = false) {
 		$viewPath =  ASS_PATH . APP_NAME . '/' . APP_VIEWS_NAME . '/';

@@ -20,8 +20,11 @@ class config{
 	];
 
 	public function __construct() {
-		require ASS_PATH . APP_NAME . '/' . CONF_NAME . '/config.php';
+		require ASS_PATH . APP_NAME . '/' . CONF_NAME . '/autoload.php';
 		$this->autoload = $autoload;
+
+		require ASS_PATH . APP_NAME . '/' . CONF_NAME . '/config.php';
+		$this->config = $config;
 	}
 
 	//获取session对象
@@ -41,8 +44,8 @@ class config{
 		//如果没有手动连接参数
 		if ( !is_array($database) ) {
 			//如果已开启自动连接
-			if ( $this->autoload['database']['is_autoload'] === true ) {
-				$database = $this->autoload['database'];
+			if ( $this->config['database']['is_autoload'] === true ) {
+				$database = $this->config['database'];
 			} else {
 				return false;
 			}
