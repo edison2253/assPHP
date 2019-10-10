@@ -3,10 +3,11 @@ if ( !function_exists('script_time') ) {
 
 	/**
 	 * 获取程序执行时间
+	 * @param bool $as_float 为true的话，返回浮点数
 	 * @return [type] [description]
 	 */
-	function script_time() {
-		return microtime();
+	function script_time($as_float = false) {
+		return microtime($as_float);
 	}
 }
 

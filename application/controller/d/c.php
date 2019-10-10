@@ -7,7 +7,11 @@ class c extends controller{
 
 	public function d() {
 
-		var_dump($this->salt('123'));
+		// var_dump($this->salt('123'));
+		$this->helper('text');
+		$string = '阿萨德发射点发';
+
+		echo word_wrap($string, 2);
 	}
 
 	public function test() {
